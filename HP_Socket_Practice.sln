@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCP_Pack_Client", "TCP_Pack_Client\TCP_Pack_Client.csproj", "{CBF84C2A-B4D8-4766-8E09-0575E5127007}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCP_Pack_Server", "TCP_Pack_Server\TCP_Pack_Server.csproj", "{11DB9D55-433D-4828-8F44-BB33249E50AD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CBF84C2A-B4D8-4766-8E09-0575E5127007}.Debug|x86.ActiveCfg = Debug|x86
+		{CBF84C2A-B4D8-4766-8E09-0575E5127007}.Debug|x86.Build.0 = Debug|x86
+		{CBF84C2A-B4D8-4766-8E09-0575E5127007}.Release|x86.ActiveCfg = Release|x86
+		{CBF84C2A-B4D8-4766-8E09-0575E5127007}.Release|x86.Build.0 = Release|x86
+		{11DB9D55-433D-4828-8F44-BB33249E50AD}.Debug|x86.ActiveCfg = Debug|x86
+		{11DB9D55-433D-4828-8F44-BB33249E50AD}.Debug|x86.Build.0 = Debug|x86
+		{11DB9D55-433D-4828-8F44-BB33249E50AD}.Release|x86.ActiveCfg = Release|x86
+		{11DB9D55-433D-4828-8F44-BB33249E50AD}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
