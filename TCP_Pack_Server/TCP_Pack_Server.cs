@@ -17,7 +17,8 @@ namespace TCP_Pack_Server
 
         //PACK模型，应用程序不必处理分包与数据抓取，HP-Socket组件保证每个OnReceive事件都向应用程序提供一个完整的数据包
         //PACK模型组件会对应用程序发送的每个数据包自动加上4字节（32位）的包头，组件接收到数据时根据包头信息自动分包，每个完整数据包通过OnReceive事件发送给应用程序
-        private HPSocketCS.TcpPackServer server = new HPSocketCS.TcpPackServer();
+        //private HPSocketCS.TcpPackServer server = new HPSocketCS.TcpPackServer();
+        private HPSocketCS.TcpServer server = new HPSocketCS.TcpServer();
 
         //将信息显示到UI线程的方法
         private void ShowMSG(string msg)
@@ -97,9 +98,9 @@ namespace TCP_Pack_Server
             //前13位为包头标识，用于数据包校验，取值范围为0-8191（ox1FFF）,当包头标识为0时不校验包头
             //后19位为长度，记录包体长度。有效数据包最大长度不能超过524287（ox7FFFF）字节，默认长度限制为262144（ox40000）字节
             //设置包头标识，客户端与服务端的包头标识一致才能通信
-            server.PackHeaderFlag = 0xff;
+            //server.PackHeaderFlag = 0xff;
             //设置包体长度
-            server.MaxPackSize = 0x1000;
+            //server.MaxPackSize = 0x1000;
         }
 
         //socket参数是当前连接的socket句柄
