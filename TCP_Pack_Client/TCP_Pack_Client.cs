@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using HPSocketCS;
 
@@ -13,6 +15,19 @@ namespace TCP_Pack_Client
 
     public partial class TCP_Pack_Client : Form
     {
+        public Dictionary<string, string> EquipmentInfo = new Dictionary<string, string>()
+        {
+            { "A8001","WS1"},
+            { "A8002","WS2"},
+            { "A8003","WS3"},
+            { "A8004","WS4"},
+            { "A8005","Run-In"},
+            { "A8006","AC01"},
+            { "A8007","AC02"},
+            { "A8008","FC01"},
+            { "A8009","FC02"},
+            { "A8010","CC"}
+        };
         private AppState appState = AppState.Stoped;
 
         //PACK模型，应用程序不必处理分包与数据抓取，HP-Socket组件保证每个OnReceive事件都向应用程序提供一个完整的数据包
@@ -219,6 +234,132 @@ namespace TCP_Pack_Client
                 ShowMSG("请先关闭连接");
                 e.Cancel = true;
             }
+        }
+        Thread thread;
+        ManualResetEvent ma;
+        bool on_off = false;
+        bool stop = false;
+
+        private void btn_Test_Click(object sender, EventArgs e)
+        {
+            btnPause.Enabled = true;
+            btnStop.Enabled = true;
+            btn_Test.Enabled = false;
+            //批量测试数据写入          
+            thread = new Thread(TestStep);//通过ThreadStart委托告诉子线程执行什么方法　
+            thread.IsBackground=true;
+            thread.Start();
+        }
+
+        private void TestStep()
+        {
+            string productno = string.Empty;
+            string equipment = string.Empty;
+            int times = 0;
+
+            this.BeginInvoke((MethodInvoker)delegate
+            {
+                if (String.IsNullOrEmpty(this.comboBox1.Text))
+                {
+                    MessageBox.Show("请选择站点名称");
+                    return;
+                }
+                if (String.IsNullOrEmpty(this.txtProductno.Text))
+                {
+                    MessageBox.Show("请输入写入测试产品编码");
+                    return;
+                }
+                if (String.IsNullOrEmpty(this.txtTimes.Text))
+                {
+                    MessageBox.Show("请输入写入测试次数");
+                    return;
+                }
+                productno = this.txtProductno.Text;
+                equipment= this.comboBox1.Text;
+                times = Convert.ToInt32(this.txtTimes.Text);
+
+                for (int i = 0; i < times; i++)
+                {
+                    if (stop)
+                        return;
+                    if (on_off)
+                    {
+                        ma = new ManualResetEvent(false);
+                        ma.WaitOne();
+                    }
+
+                    string sendContent = string.Empty;
+                    byte[] sendBytes = new byte[] { };
+                    string product = productno + i.ToString("0000");
+                    //建立握手
+                    sendContent = "<STX>Process_ID," + equipment + ",null<ETX>";
+                    sendBytes = Encoding.GetEncoding("UTF-8").GetBytes(sendContent);
+                    client.Send(sendBytes, sendBytes.Length);
+                    Thread.Sleep(1000);
+
+                    //产品进站
+                    sendContent = "<STX>Process_IN," + equipment + ",null," + product + "<ETX>";
+                    sendBytes = Encoding.GetEncoding("UTF-8").GetBytes(sendContent);
+                    client.Send(sendBytes, sendBytes.Length);
+                    Thread.Sleep(1000);
+
+                    //产品出站
+                    sendContent = "<STX>Process_OUT," + equipment + ",null," + product + ",pass,TestItem1=2.3,TestItem4=6.2,2<ETX>";
+                    sendBytes = Encoding.GetEncoding("UTF-8").GetBytes(sendContent);
+                    client.Send(sendBytes, sendBytes.Length);
+                    Thread.Sleep(1000);
+
+                    //产品测试出站
+                    sendContent = @"<STX>START_OUT," + equipment + ",null," + product + ",pass,<?xml version=\"1.0\" encoding=\"utf - \"?>" +
+                            "< Cluster SERIALNR = \"A2C53112763\" TYPEFAMILY = \"F3XBASE\" TYPECODE = \"A2C53112763\" TESTMODE = \"AUTO\" TESTRESULT = \"2\" >" +
+                            "< Teststep StepNo = \"10000010\" StepName = \"Open AIDA\" Value = \"0\" UPPERLIMIT = \"0\" LOWERLIMIT = \"0\" Unit = \"\" Duration = \"0.03\" TestResult = \"1\" />" +
+                            "< Teststep StepNo = \"00000000\" StepName = \"Set power\" Value = \"0\" UPPERLIMIT = \"0\" LOWERLIMIT = \"0\" Unit = \"\" Duration = \"0.16\" TestResult = \"1\" />" +
+                            "< Teststep StepNo = \"00000001\" StepName = \"Power On\" Value = \"0\" UPPERLIMIT = \"0\" LOWERLIMIT = \"0\" Unit = \"\" Duration = \"0.17\" TestResult = \"1\" />" +
+                            "< Teststep StepNo = \"12000023\" StepName = \"Power Switch ON\" Value = \"0\" UPPERLIMIT = \"0\" LOWERLIMIT = \"0\" Unit = \"\" Duration = \"0.14\" TestResult = \"0\" />" +
+                            "< Teststep StepNo = \"50000010\" StepName = \"Delay 2s\" Value = \"0\" UPPERLIMIT = \"0\" LOWERLIMIT = \"0\" Unit = \"\" Duration = \"2.02\" TestResult = \"0\" />" +
+                            "< Teststep StepNo = \"10000030\" StepName = \"Enter to diagnostic\" Value = \"0\" UPPERLIMIT = \"0\" LOWERLIMIT = \"0\" Unit = \"\" Duration = \"2.38\" TestResult = \"1\" />" +
+                            "< Teststep StepNo = \"60000001\" StepName = \"5.7.1\" Value = \"0\" UPPERLIMIT = \"0\" LOWERLIMIT = \"0\" Unit = \"\" Duration = \"0\" TestResult = \"0\" />" +
+                            "< Teststep StepNo = \"57120001\" StepName = \"read the Visteon product partnumber from the product NVM\" Value = \"0\" UPPERLIMIT = \"0\" LOWERLIMIT = \"0\" Unit = \"\" Duration = \"0.27\" TestResult = \"1\" />" +
+                            "< Teststep StepNo = \"57120002\" StepName = \"read the Serial Number\" Value = \"0\" UPPERLIMIT = \"0\" LOWERLIMIT = \"0\" Unit = \"\" Duration = \"0.26\" TestResult = \"1\" />" +
+                            "< Teststep StepNo = \"60000002\" StepName = \"5.7.2\" Value = \"0\" UPPERLIMIT = \"0\" LOWERLIMIT = \"0\" Unit = \"\" Duration = \"0\" TestResult = \"0\" />" +
+                            "< Teststep StepNo = \"57220000\" StepName = \"Read Traceability\" Value = \"0\" UPPERLIMIT = \"0\" LOWERLIMIT = \"0\" Unit = \"\" Duration = \"0.27\" TestResult = \"1\" />" +
+                            "< Teststep StepNo = \"60000003\" StepName = \"5.7.3\" Value = \"0\" UPPERLIMIT = \"0\" LOWERLIMIT = \"0\" Unit = \"\" Duration = \"0\" TestResult = \"0\" />" +
+                            "< Teststep StepNo = \"57300000\" StepName = \"Reset Fazit Traceability\" Value = \"0\" UPPERLIMIT = \"0\" LOWERLIMIT = \"0\" Unit = \"\" Duration = \"0.41\" TestResult = \"1\" />" +
+                            "< Teststep StepNo = \"60000012\" StepName = \"5.5.20\" Value = \"0\" UPPERLIMIT = \"0\" LOWERLIMIT = \"0\" Unit = \"\" Duration = \"0.05\" TestResult = \"0\" />" +
+                            "< Teststep StepNo = \"21000002\" StepName = \"Generate Sine 1KHZ\" Value = \"0\" UPPERLIMIT = \"0\" LOWERLIMIT = \"0\" Unit = \"\" Duration = \"0.03\" TestResult = \"1\" />" +
+                            "< Teststep StepNo = \"55200001\" StepName = \"Speaker audio Freq test\" Value = \"0.95292561040690982\" UPPERLIMIT = \"1050\" LOWERLIMIT = \"950\" Unit = \"\" Duration = \"1.49\" TestResult = \"2\" />" +
+                            "</ Cluster >< ETX>";
+                    sendBytes = Encoding.GetEncoding("UTF-8").GetBytes(sendContent);
+                    client.Send(sendBytes, sendBytes.Length);
+                    this.BeginInvoke((MethodInvoker)delegate
+                    {
+                        btnCounts.Text = i.ToString("0000");
+                    });
+                    Thread.Sleep(1000);
+                }
+
+            });            
+        }
+
+        private void btnPause_Click(object sender, EventArgs e)
+        {            
+            if (this.btnPause.Text == "暂停")
+            {
+                stop = true;
+                this.btnPause.Text = "继续";
+            }
+            else
+            {
+                stop = false;
+                this.btnPause.Text = "暂停";
+            }               
+        }
+
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            stop = true;
+            btn_Test.Enabled = true;
+            btnStop.Enabled = false;
         }
     }
 }

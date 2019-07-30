@@ -1,9 +1,13 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.705
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCP_Pack_Client", "TCP_Pack_Client\TCP_Pack_Client.csproj", "{CBF84C2A-B4D8-4766-8E09-0575E5127007}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCP_Pack_Server", "TCP_Pack_Server\TCP_Pack_Server.csproj", "{11DB9D55-433D-4828-8F44-BB33249E50AD}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "TestUnit", "TestUnit\TestUnit.vdproj", "{8027463E-F37F-423C-AACB-C0C24573E432}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,8 +23,13 @@ Global
 		{11DB9D55-433D-4828-8F44-BB33249E50AD}.Debug|x86.Build.0 = Debug|x86
 		{11DB9D55-433D-4828-8F44-BB33249E50AD}.Release|x86.ActiveCfg = Release|x86
 		{11DB9D55-433D-4828-8F44-BB33249E50AD}.Release|x86.Build.0 = Release|x86
+		{8027463E-F37F-423C-AACB-C0C24573E432}.Debug|x86.ActiveCfg = Debug
+		{8027463E-F37F-423C-AACB-C0C24573E432}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B5482576-0F33-4F60-9691-BFE7384B005A}
 	EndGlobalSection
 EndGlobal

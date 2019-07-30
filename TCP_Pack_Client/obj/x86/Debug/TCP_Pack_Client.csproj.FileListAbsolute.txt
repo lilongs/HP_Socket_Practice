@@ -61,3 +61,14 @@ F:\下载\HP_Socket_Practice\HP_Socket_Practice\TCP_Pack_Client\obj\x86\Debug\TC
 F:\下载\HP_Socket_Practice\HP_Socket_Practice\TCP_Pack_Client\obj\x86\Debug\TCP_Pack_Client.csproj.CopyComplete
 F:\下载\HP_Socket_Practice\HP_Socket_Practice\TCP_Pack_Client\obj\x86\Debug\TCP_Pack_Client.exe
 F:\下载\HP_Socket_Practice\HP_Socket_Practice\TCP_Pack_Client\obj\x86\Debug\TCP_Pack_Client.pdb
+E:\Demo\C#\HP_Socket_Practice\TCP_Pack_Client\bin\Debug\TCP_Pack_Client.exe.config
+E:\Demo\C#\HP_Socket_Practice\TCP_Pack_Client\bin\Debug\TCP_Pack_Client.exe
+E:\Demo\C#\HP_Socket_Practice\TCP_Pack_Client\bin\Debug\TCP_Pack_Client.pdb
+E:\Demo\C#\HP_Socket_Practice\TCP_Pack_Client\bin\Debug\HPSocketCS.dll
+E:\Demo\C#\HP_Socket_Practice\TCP_Pack_Client\obj\x86\Debug\TCP_Pack_Client.TCP_Pack_Client.resources
+E:\Demo\C#\HP_Socket_Practice\TCP_Pack_Client\obj\x86\Debug\TCP_Pack_Client.Properties.Resources.resources
+E:\Demo\C#\HP_Socket_Practice\TCP_Pack_Client\obj\x86\Debug\TCP_Pack_Client.csproj.GenerateResource.cache
+E:\Demo\C#\HP_Socket_Practice\TCP_Pack_Client\obj\x86\Debug\TCP_Pack_Client.csproj.CoreCompileInputs.cache
+E:\Demo\C#\HP_Socket_Practice\TCP_Pack_Client\obj\x86\Debug\TCP_Pack_Client.csproj.CopyComplete
+E:\Demo\C#\HP_Socket_Practice\TCP_Pack_Client\obj\x86\Debug\TCP_Pack_Client.exe
+E:\Demo\C#\HP_Socket_Practice\TCP_Pack_Client\obj\x86\Debug\TCP_Pack_Client.pdb

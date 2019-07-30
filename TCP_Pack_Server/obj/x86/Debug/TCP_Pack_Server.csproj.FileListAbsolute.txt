@@ -60,3 +60,15 @@ F:\下载\HP_Socket_Practice\HP_Socket_Practice\TCP_Pack_Server\obj\x86\Debug\TC
 F:\下载\HP_Socket_Practice\HP_Socket_Practice\TCP_Pack_Server\obj\x86\Debug\TCP_Pack_Server.csproj.CopyComplete
 F:\下载\HP_Socket_Practice\HP_Socket_Practice\TCP_Pack_Server\obj\x86\Debug\TCP_Pack_Server.exe
 F:\下载\HP_Socket_Practice\HP_Socket_Practice\TCP_Pack_Server\obj\x86\Debug\TCP_Pack_Server.pdb
+E:\Demo\C#\HP_Socket_Practice\TCP_Pack_Server\bin\Debug\TCP_Pack_Server.exe.config
+E:\Demo\C#\HP_Socket_Practice\TCP_Pack_Server\bin\Debug\TCP_Pack_Server.exe
+E:\Demo\C#\HP_Socket_Practice\TCP_Pack_Server\bin\Debug\TCP_Pack_Server.pdb
+E:\Demo\C#\HP_Socket_Practice\TCP_Pack_Server\bin\Debug\HPSocketCS.dll
+E:\Demo\C#\HP_Socket_Practice\TCP_Pack_Server\obj\x86\Debug\TCP_Pack_Server.csprojAssemblyReference.cache
+E:\Demo\C#\HP_Socket_Practice\TCP_Pack_Server\obj\x86\Debug\TCP_Pack_Server.Properties.Resources.resources
+E:\Demo\C#\HP_Socket_Practice\TCP_Pack_Server\obj\x86\Debug\TCP_Pack_Server.TCP_Pack_Server.resources
+E:\Demo\C#\HP_Socket_Practice\TCP_Pack_Server\obj\x86\Debug\TCP_Pack_Server.csproj.GenerateResource.cache
+E:\Demo\C#\HP_Socket_Practice\TCP_Pack_Server\obj\x86\Debug\TCP_Pack_Server.csproj.CoreCompileInputs.cache
+E:\Demo\C#\HP_Socket_Practice\TCP_Pack_Server\obj\x86\Debug\TCP_Pack_Server.csproj.CopyComplete
+E:\Demo\C#\HP_Socket_Practice\TCP_Pack_Server\obj\x86\Debug\TCP_Pack_Server.exe
+E:\Demo\C#\HP_Socket_Practice\TCP_Pack_Server\obj\x86\Debug\TCP_Pack_Server.pdb
